@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Batoot_Developer", "Batoot_Developer\Batoot_Developer.csproj", "{3FFDE893-E726-44BA-BD4D-B1E460D1ECCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FFDE893-E726-44BA-BD4D-B1E460D1ECCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FFDE893-E726-44BA-BD4D-B1E460D1ECCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FFDE893-E726-44BA-BD4D-B1E460D1ECCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FFDE893-E726-44BA-BD4D-B1E460D1ECCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
