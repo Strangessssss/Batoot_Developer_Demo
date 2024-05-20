@@ -6,12 +6,19 @@
         xmlns:viewModels="clr-namespace:Batoot_Developer.ViewModels"
         Closed="CreationNewProjectWindow_OnClosed"
         mc:Ignorable="d"
-        Title="CreationNewProject" Height="400" Width="550">
+        Title="CreationNewProject" Height="400" Width="550" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewModels:CreationNewProjectViewModel/>
     </Window.DataContext>
     <Window.Background>Gray</Window.Background>
-    <Grid Background="#232324" ShowGridLines="False" Margin="2">
+    <Grid ShowGridLines="False" Margin="2">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#2a0b38" Offset="0"/>
+                <GradientStop Color="#871b53" Offset="0.5"/>
+                <GradientStop Color="#2a0b38" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -23,16 +30,30 @@
         <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#d1d7e0">.NET CORE>ConsoleApplication</TextBlock>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
             <Label Margin="30 0 8 0" VerticalAlignment="Center"  Height="25" Foreground="#d1d7e0">Project name</Label>
-            <TextBox Margin="34 0 0 0" VerticalContentAlignment="Center" Width="330" Height="25" Background="#6b6b6b" Foreground="#dedede" Text="{Binding ProjectName}"/>
+            <TextBox Margin="34 0 0 0" VerticalContentAlignment="Center" Width="330" Height="25" Foreground="#dedede" Text="{Binding ProjectName}">
+                <TextBox.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                        <GradientStop Color="#2a0b38" Offset="0"/>
+                        <GradientStop Color="#871b53" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBox.Background>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Horizontal">
             <Label Margin="30 0 0 0" VerticalAlignment="Center"  Height="25" Foreground="#d1d7e0">Project directory</Label>
-            <TextBox x:Name="DirectoryTextBox" Margin="28 0 0 0" VerticalContentAlignment="Center" Width="293" Height="25" Background="#6b6b6b" Foreground="#dedede" Text="{Binding ProjectDirectory}"/>
-            <Button Margin="7 0 0 0" VerticalContentAlignment="Center" Width="30" Height="25" Background="#6b6b6b" Foreground="#dedede" Command="{Binding SetDirectoryCommand}">...</Button>
+            <TextBox x:Name="DirectoryTextBox" Margin="28 0 0 0" VerticalContentAlignment="Center" Width="293" Height="25" Foreground="#dedede" Text="{Binding ProjectDirectory}">
+                <TextBox.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                        <GradientStop Color="#2a0b38" Offset="0"/>
+                        <GradientStop Color="#871b53" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBox.Background>
+            </TextBox>
+            <Button Margin="7 0 0 0" VerticalContentAlignment="Center" Width="30" Height="25" Background="#2a0b38" Foreground="#dedede" Command="{Binding SetDirectoryCommand}">...</Button>
         </StackPanel>
         <StackPanel Grid.Row="5" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button Margin="30 0 0 0" Height="20" Width="50" Background="#515152" Foreground="#dedede" Command="{Binding CloseCommand}">Cancel</Button>
-            <Button Margin="380 0 0 0" Height="20" Width="50" Background="#515152" Foreground="#dedede" Command="{Binding CreateCommand}">Create</Button>
+            <Button Margin="30 0 0 0" Height="20" Width="50" Background="#2a0b38" Foreground="#dedede" Command="{Binding CloseCommand}">Cancel</Button>
+            <Button Margin="380 0 0 0" Height="20" Width="50" Background="#871b53" Foreground="#dedede" Command="{Binding CreateCommand}">Create</Button>
         </StackPanel>
     </Grid>
 </Window>

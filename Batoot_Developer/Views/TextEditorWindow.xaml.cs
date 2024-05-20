@@ -1,5 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms.VisualStyles;
+using System.Windows.Input;
 using System.Windows.Media;
 using Batoot_Developer.Messages;
 using Batoot_Developer.Models;
@@ -67,5 +69,20 @@ public partial class TextEditorWindow : Window
     private void TextEditorWindow_OnClosed(object? sender, EventArgs e)
     {
         WeakReferenceMessenger.Default.Send(new CloseMessage());
+    }
+
+    private void ButtonBase_OnClickCloseButton(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
+
+    private void UIElement_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        DragMove();
+    }
+
+    private void Fullscreen(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
     }
 }

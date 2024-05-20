@@ -94,6 +94,8 @@ public partial class TextEditorViewModel: BaseViewModel
     private void ProjectOpen(object recipient, ProjectOpenMessage message)
     {
         RefreshFiles(message.Path);
+        if (_currentFile != null) _currentFile.Path = message.Path + "\\Program.cs";
+        OpenFile();
     }
 
     private void RefreshFiles(string? directory)
@@ -109,6 +111,12 @@ public partial class TextEditorViewModel: BaseViewModel
         {
             if (dir.EndsWith(".cs"))
                 Directories.Add(new FileDirectoryModel(dir, false) { FileName = dir.Split("\\").Last() });
+        }
+        if (Directories.Any(x => x.FileName == "Program.cs"))
+        {
+            _currentFile = new CurrentFileMessage();
+            _currentFile.Path = directory + "\\Program.cs";
+            _currentFile.Name = "Program.cs";
         }
     }
 }

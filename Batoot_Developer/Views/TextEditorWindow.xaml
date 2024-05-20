@@ -7,100 +7,169 @@
         xmlns:models="clr-namespace:Batoot_Developer.Models"
         Closed="TextEditorWindow_OnClosed"
         mc:Ignorable="d"
-        Title="Batoot! Developer" Height="450" Width="800" MinWidth="800" MinHeight="450" Background="#232324">
+        Title="Batoot! Developer" WindowStyle="None" ResizeMode="CanResizeWithGrip" Height="450" Width="800" MinWidth="800" MinHeight="450" Background="Transparent">
     <Window.DataContext>
         <viewModels:TextEditorViewModel/>
     </Window.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#383838" />
-        <Grid Grid.Row="1">
-            <Grid ShowGridLines="False">
-                <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="0.27*" MinWidth="40" x:Name="ColumnDefinition"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-        
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.07*"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid Background="Transparent">
-                        <Button Background="Transparent" BorderThickness="0" Margin="25  3" HorizontalAlignment="Left" Command="{Binding NewFileCommand}">
-                            <Image Source="../Images/add-folder.png"/>
-                        </Button>
+    <Border BorderThickness="1">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#2a0b38" Offset="0"/>
+                <GradientStop Color="#871b53" Offset="0.5"/>
+                <GradientStop Color="#2a0b38" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Grid>
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                        <GradientStop Color="#2a0b38" Offset="0"/>
+                        <GradientStop Color="#871b53" Offset="0.5"/>
+                        <GradientStop Color="#2a0b38" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.05*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Color="#2a0b38" Offset="0"/>
+                            <GradientStop Color="#871b53" Offset="0.5"/>
+                            <GradientStop Color="#2a0b38" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="14*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Background="Transparent" PreviewMouseLeftButtonDown="UIElement_OnPreviewMouseLeftButtonDown"></TextBlock>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Background="Transparent" Height="17" BorderThickness="0" Foreground="White" FontSize="20" Margin="0 3 0 3" Click="Fullscreen">
+                                <Image Source="../Images/move.png"/>
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button Background="Transparent" Height="16" BorderThickness="0" Foreground="White" FontSize="20" Margin="0 3 0 3" Click="ButtonBase_OnClickCloseButton">
+                                <Image Source="../Images/cancel.png"/>
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <TreeView Grid.Row="1" Background="Transparent" BorderThickness="0" Margin="5 10 " ItemsSource="{Binding Directories}">
-                        <TreeView.Resources>
-                            <HierarchicalDataTemplate DataType="{x:Type models:FileDirectoryModel}" ItemsSource="{Binding ChildNodes}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Width="15" Margin="0 0 5 0">
-                                        <Image.Style>
-                                            <Style TargetType="Image">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsDirectory}" Value="True">
-                                                        <Setter Property="Source" Value="../Images/folder.png"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding IsDirectory}" Value="False">
-                                                        <Setter Property="Source" Value="../Images/google-docs.png" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Image.Style>
-                                    </Image>
-                                    <Button Foreground="White" Background="Transparent" BorderThickness="0" Content="{Binding FileName}" DataContext="{Binding }" Click="ButtonBase_OnClick"/>
-                                </StackPanel>
-                            </HierarchicalDataTemplate>
-                        </TreeView.Resources>
-                    </TreeView>
                 </Grid>
-                <GridSplitter ResizeBehavior="CurrentAndNext" x:Name="FilesGridSplitter" Grid.Column="0" VerticalAlignment="Stretch" Width="4" Background="#383838"/>
-                <Grid Grid.Column="1" ShowGridLines="False">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.1*"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="0.5*" MinHeight="40"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Background="#1c1c1c">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Background="Transparent" BorderThickness="0" Command="{Binding SaveFileCommand}">
-                                <Image Source="../Images/diskette.png" Margin="10 3 10 3"/>
-                            </Button>
-                            <Button Background="Transparent" BorderThickness="0" Command="{Binding BuildCommand}">
-                                <Image Source="../Images/hammer.png" Margin="10 3 10 3"/>
-                            </Button>
-                            <Button Background="Transparent" BorderThickness="0" Command="{Binding RunCommand}">
-                                <Image Source="../Images/play-button.png" Margin="10 3 10 3"/>
-                            </Button>
-                        </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid ShowGridLines="False">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="0.27*" MinWidth="40" x:Name="ColumnDefinition"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.07*"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid Background="Transparent">
+                                <Button Background="Transparent" BorderThickness="0" Margin="25  3" HorizontalAlignment="Left" Command="{Binding NewFileCommand}">
+                                    <Image Source="../Images/add-folder.png"/>
+                                </Button>
+                            </Grid>
+                            <TreeView Grid.Row="1" Background="Transparent" BorderThickness="0" Margin="5 10 " ItemsSource="{Binding Directories}">
+                                <TreeView.Resources>
+                                    <HierarchicalDataTemplate DataType="{x:Type models:FileDirectoryModel}" ItemsSource="{Binding ChildNodes}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="15" Margin="0 0 5 0">
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsDirectory}" Value="True">
+                                                                <Setter Property="Source" Value="../Images/folder.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsDirectory}" Value="False">
+                                                                <Setter Property="Source" Value="../Images/google-docs.png" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                            <Button Foreground="White" Background="Transparent" BorderThickness="0" Content="{Binding FileName}" DataContext="{Binding }" Click="ButtonBase_OnClick"/>
+                                        </StackPanel>
+                                    </HierarchicalDataTemplate>
+                                </TreeView.Resources>
+                            </TreeView>
+                        </Grid>
+                        <GridSplitter ResizeBehavior="CurrentAndNext" x:Name="FilesGridSplitter" Grid.Column="0" VerticalAlignment="Stretch" Width="4">
+                            <GridSplitter.Background>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                    <GradientStop Color="#2a0b38" Offset="0"/>
+                                </LinearGradientBrush>
+                            </GridSplitter.Background>
+                        </GridSplitter>
+                        <Grid Grid.Column="1" ShowGridLines="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="0.5*" MinHeight="40"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Background="#1c1c1c">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding SaveFileCommand}">
+                                        <Image Source="../Images/diskette.png" Margin="10 3 10 3"/>
+                                    </Button>
+                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding BuildCommand}">
+                                        <Image Source="../Images/hammer.png" Margin="10 3 10 3"/>
+                                    </Button>
+                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding RunCommand}">
+                                        <Image Source="../Images/play-button.png" Margin="10 3 10 3"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                    <avalonEdit:TextEditor
+                                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                                        Name="TextEditor"
+                                        FontFamily="Oswald"
+                                        Foreground="WhiteSmoke"
+                                        FontWeight="Light"
+                                        SyntaxHighlighting="C#"
+                                        FontSize="10pt"
+                                        HorizontalScrollBarVisibility="Disabled"
+                                        VerticalScrollBarVisibility="Auto"
+                                        Document="{Binding Text, Mode=TwoWay}"
+                                        Loaded="TextEditor_OnLoaded">
+                                        <avalonEdit:TextEditor.Background>
+                                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                                <GradientStop Color="#2a0b38" Offset="0"/>
+                                                <GradientStop Color="#4a0e41" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </avalonEdit:TextEditor.Background>
+                                    </avalonEdit:TextEditor>
+                            </Grid>
+                            <Grid Grid.Row="2" Background="#2e2d2d">
+                                <TextBlock Foreground="IndianRed" Text="{Binding Errors}">
+                                    <TextBlock.Background>
+                                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                            <GradientStop Color="#2a0b38" Offset="0"/>
+                                            <GradientStop Color="#4a0e41" Offset="0.5"/>
+                                        </LinearGradientBrush>
+                                    </TextBlock.Background>
+                                </TextBlock>
+                            </Grid>
+                            <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="4">
+                                <GridSplitter.Background>
+                                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                        <GradientStop Color="#2a0b38" Offset="0"/>
+                                    </LinearGradientBrush>
+                                </GridSplitter.Background>
+                            </GridSplitter>
+                        </Grid>
                     </Grid>
-                    <Grid Grid.Row="1">
-                            <avalonEdit:TextEditor
-                                xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-                                Name="TextEditor"
-                                FontFamily="Oswald"
-                                Background="#2b2b2b"
-                                Foreground="WhiteSmoke"
-                                FontWeight="Light"
-                                SyntaxHighlighting="C#"
-                                FontSize="10pt"
-                                HorizontalScrollBarVisibility="Disabled"
-                                VerticalScrollBarVisibility="Auto"
-                                Document="{Binding Text, Mode=TwoWay}"
-                                Loaded="TextEditor_OnLoaded"
-                                />
-                    </Grid>
-                    <Grid Grid.Row="2" Background="#2e2d2d">
-                        <TextBlock Foreground="IndianRed" Text="{Binding Errors}"/>
-                    </Grid>
-                    <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="4" Background="#383838"/>
                 </Grid>
             </Grid>
         </Grid>
-        </Grid>
-        
+    </Border>
 </Window>

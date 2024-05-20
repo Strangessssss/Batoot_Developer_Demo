@@ -1,0 +1,123 @@
+<Window x:Class="Batoot_Developer.Views.ProjectListingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:Batoot_Developer.ViewModels"
+        xmlns:converters="clr-namespace:Batoot_Developer.Converters"
+        mc:Ignorable="d" Height="500" MinHeight="500" MaxHeight="500" WindowStartupLocation="CenterScreen" Width="470" MinWidth="470" ResizeMode="CanResizeWithGrip" WindowStyle="None" AllowsTransparency="True">
+    <Window.DataContext>
+        <viewModels:ProjectListingViewModel/>
+    </Window.DataContext>
+    <Window.Background>
+        Transparent
+    </Window.Background>
+    <Window.Resources>
+        <converters:NameToPathConverter x:Key="NameToPathConverter" />
+    </Window.Resources>
+    <Border BorderThickness="0" CornerRadius="10" BorderBrush="Aqua">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#b934f7" Offset="0"/>
+                <GradientStop Color="#871b53" Offset="0.5"/>
+                <GradientStop Color="#2a0b38" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.07*"/>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition Height="0.075*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock Background="Transparent" PreviewMouseLeftButtonDown="UIElement_OnPreviewMouseLeftButtonDown"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Button Background="Transparent" BorderThickness="0" Foreground="White" FontSize="20" Margin="0 5 0 0" Click="ButtonBase_OnClick">
+                            <Image Source="../Images/cancel.png"/>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.15*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Margin=" 10 10 0 5" BorderThickness="0" Foreground="Gray" FontSize="10" MaxLines="1" Text="{Binding Search}">
+                    <TextBox.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Color="#2a0b38" Offset="0"/>
+                            <GradientStop Color="#871b53" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <Button Grid.Column="1" VerticalAlignment="Bottom" Margin="7.5 10 7.5 10" BorderThickness="0">
+                    <Button.Background>
+                        #871b53
+                    </Button.Background>
+                    <Image Source="../Images/zoom.png" Margin="4"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="2">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                    <ListView x:Name="ProjectsListView" Margin="5 5 5 0" BorderThickness="0" ItemsSource="{Binding ShowedProjects}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                        <ListView.Background>
+                            Transparent
+                        </ListView.Background>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0.1" Background="Transparent" CornerRadius="2" Height="40">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Margin="5 0 0 0">
+                                            <Image Width="30" Height="30" Source="{Binding Name, Converter={StaticResource NameToPathConverter}}"/>
+                                        </Label>
+                                        <StackPanel>
+                                            <TextBlock Margin="5 0 0 0" Text="{Binding Name}" Foreground="White"/>
+                                            <TextBlock Margin="5 0 0 0" Text="{Binding Path}" Foreground="#9c9c9c"/>
+                                        </StackPanel>
+                                        <Button Margin="10 0 0 0" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Width="20" Height="20"
+                                                Command="{Binding DataContext.RunCommand, ElementName=ProjectsListView}" CommandParameter="{Binding}">
+                                            <Image Width="15" Height="15" Source="../Images/play-button.png"/>
+                                        </Button>
+                                    </StackPanel>
+                                </Border>
+                                
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid>
+                    <Border Margin="6 4">
+                        <Button FontSize="10" BorderThickness="0" Foreground="LightGray" Command="{Binding CreateNewProjectCommand}">
+                            <Button.Background>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                    <GradientStop Color="#2a0b38" Offset="0"/>
+                                    <GradientStop Color="#871b53" Offset="0.5"/>
+                                    <GradientStop Color="#2a0b38" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                            Create new
+                        </Button>
+                    </Border>
+                </Grid>
+            </Grid>
+                <StatusBar Grid.Row="4" Background="#2a0b38">
+                    <TextBlock Margin="15 0 0 0" Foreground="Gray" FontSize="10">
+                        Projects: 
+                    </TextBlock>
+                    <TextBlock Foreground="Gray" FontSize="10" Text="{Binding AllProjects.Count}"/>
+                </StatusBar>
+        </Grid>
+    </Border>
+</Window>
