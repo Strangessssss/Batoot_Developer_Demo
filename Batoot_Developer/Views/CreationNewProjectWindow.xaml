@@ -1,0 +1,38 @@
+<Window x:Class="Batoot_Developer.Views.CreationNewProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:Batoot_Developer.ViewModels"
+        Closed="CreationNewProjectWindow_OnClosed"
+        mc:Ignorable="d"
+        Title="CreationNewProject" Height="400" Width="550">
+    <Window.DataContext>
+        <viewModels:CreationNewProjectViewModel/>
+    </Window.DataContext>
+    <Window.Background>Gray</Window.Background>
+    <Grid Background="#232324" ShowGridLines="False" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#d1d7e0">.NET CORE>ConsoleApplication</TextBlock>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
+            <Label Margin="30 0 8 0" VerticalAlignment="Center"  Height="25" Foreground="#d1d7e0">Project name</Label>
+            <TextBox Margin="34 0 0 0" VerticalContentAlignment="Center" Width="330" Height="25" Background="#6b6b6b" Foreground="#dedede" Text="{Binding ProjectName}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Horizontal">
+            <Label Margin="30 0 0 0" VerticalAlignment="Center"  Height="25" Foreground="#d1d7e0">Project directory</Label>
+            <TextBox x:Name="DirectoryTextBox" Margin="28 0 0 0" VerticalContentAlignment="Center" Width="293" Height="25" Background="#6b6b6b" Foreground="#dedede" Text="{Binding ProjectDirectory}"/>
+            <Button Margin="7 0 0 0" VerticalContentAlignment="Center" Width="30" Height="25" Background="#6b6b6b" Foreground="#dedede" Command="{Binding SetDirectoryCommand}">...</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="5" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Margin="30 0 0 0" Height="20" Width="50" Background="#515152" Foreground="#dedede" Command="{Binding CloseCommand}">Cancel</Button>
+            <Button Margin="380 0 0 0" Height="20" Width="50" Background="#515152" Foreground="#dedede" Command="{Binding CreateCommand}">Create</Button>
+        </StackPanel>
+    </Grid>
+</Window>
