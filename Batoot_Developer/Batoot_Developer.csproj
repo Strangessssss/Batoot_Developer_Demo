@@ -11,47 +11,65 @@
     <ItemGroup>
       <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
       <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0-3.final" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Images\2024-05-09 21.39.27.jpg" />
+      <None Remove="Images\add-folder.png" />
+      <None Remove="Images\diskette.png" />
+      <None Remove="Images\folder.png" />
+      <None Remove="Images\google-docs.png" />
+      <None Remove="Images\hammer.png" />
+      <None Remove="Images\play-button.png" />
+      <None Remove="Images\zoom.png" />
+      <None Remove="Images\cancel.png" />
+      <None Remove="Images\move.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Images\cross-circle.png" />
+      <None Remove="Images\document.png" />
+      <None Remove="Images\play-circle.png" />
+      <None Remove="Images\square-plus.png" />
+      <None Remove="Images\hammer-crash.png" />
+      <None Remove="Images\expand.png" />
+      <None Remove="Images\disk.png" />
+      <None Remove="Images\search.png" />
+      <None Remove="Images\icons8-folder-94.png" />
+      <None Remove="Images\icons8-folder-375.png" />
+      <None Remove="Images\icons8-document-375.png" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Resource Include="Images\2024-05-09 21.39.27.jpg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <None Remove="Images\add-folder.png" />
       <Resource Include="Images\add-folder.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <None Remove="Images\diskette.png" />
-      <Resource Include="Images\diskette.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Images\folder.png" />
-      <Resource Include="Images\folder.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Images\google-docs.png" />
-      <Resource Include="Images\google-docs.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Images\hammer.png" />
-      <Resource Include="Images\hammer.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Images\play-button.png" />
-      <Resource Include="Images\play-button.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Images\zoom.png" />
-      <Resource Include="Images\zoom.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Images\cancel.png" />
       <Resource Include="Images\cancel.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <None Remove="Images\move.png" />
+      <Resource Include="Images\diskette.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Images\folder.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Images\google-docs.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Images\hammer.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
       <Resource Include="Images\move.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Images\play-button.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Images\zoom.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>

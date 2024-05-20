@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
 using System.Windows.Media;
+using Batoot_Developer.ErrorDetector;
 using Batoot_Developer.Messages;
 using Batoot_Developer.Models;
 using CommunityToolkit.Mvvm.Messaging;
@@ -84,5 +85,10 @@ public partial class TextEditorWindow : Window
     private void Fullscreen(object sender, RoutedEventArgs e)
     {
         WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+    }
+
+    private void TextEditor_OnTextChanged(object? sender, EventArgs e)
+    {
+        WeakReferenceMessenger.Default.Send(new TextChanged());
     }
 }

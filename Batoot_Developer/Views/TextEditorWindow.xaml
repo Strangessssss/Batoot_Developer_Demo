@@ -7,39 +7,25 @@
         xmlns:models="clr-namespace:Batoot_Developer.Models"
         Closed="TextEditorWindow_OnClosed"
         mc:Ignorable="d"
-        Title="Batoot! Developer" WindowStyle="None" ResizeMode="CanResizeWithGrip" Height="450" Width="800" MinWidth="800" MinHeight="450" Background="Transparent">
+        Title="Batoot! Developer" WindowStyle="None" ResizeMode="CanResizeWithGrip" Height="450" Width="900" MinWidth="900" MinHeight="450" Background="Transparent" AllowsTransparency="True">
     <Window.DataContext>
         <viewModels:TextEditorViewModel/>
     </Window.DataContext>
-    <Border BorderThickness="1">
-        <Border.BorderBrush>
+    <Border BorderThickness="1" CornerRadius="20">
+        <Border.Background>
             <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                 <GradientStop Color="#2a0b38" Offset="0"/>
                 <GradientStop Color="#871b53" Offset="0.5"/>
                 <GradientStop Color="#2a0b38" Offset="1"/>
             </LinearGradientBrush>
-        </Border.BorderBrush>
+        </Border.Background>
         <Grid>
-            <Grid>
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                        <GradientStop Color="#2a0b38" Offset="0"/>
-                        <GradientStop Color="#871b53" Offset="0.5"/>
-                        <GradientStop Color="#2a0b38" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
+            <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.05*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                            <GradientStop Color="#2a0b38" Offset="0"/>
-                            <GradientStop Color="#871b53" Offset="0.5"/>
-                            <GradientStop Color="#2a0b38" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="14*"/>
@@ -104,9 +90,7 @@
                         </Grid>
                         <GridSplitter ResizeBehavior="CurrentAndNext" x:Name="FilesGridSplitter" Grid.Column="0" VerticalAlignment="Stretch" Width="4">
                             <GridSplitter.Background>
-                                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                    <GradientStop Color="#2a0b38" Offset="0"/>
-                                </LinearGradientBrush>
+                                Transparent
                             </GridSplitter.Background>
                         </GridSplitter>
                         <Grid Grid.Column="1" ShowGridLines="False">
@@ -115,11 +99,14 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.5*" MinHeight="40"/>
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" Background="#1c1c1c">
+                            <Grid Grid.Row="0">
+                                <Grid.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#871b53" Offset="1.0"/>
+                                        <GradientStop Color="#2a0b38" Offset="0.4"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding SaveFileCommand}">
-                                        <Image Source="../Images/diskette.png" Margin="10 3 10 3"/>
-                                    </Button>
                                     <Button Background="Transparent" BorderThickness="0" Command="{Binding BuildCommand}">
                                         <Image Source="../Images/hammer.png" Margin="10 3 10 3"/>
                                     </Button>
@@ -128,7 +115,17 @@
                                     </Button>
                                 </StackPanel>
                             </Grid>
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="1" ShowGridLines="False">
+                                <Grid.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#871b53" Offset="1.0"/>
+                                        <GradientStop Color="#2a0b38" Offset="0.7"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
                                 <avalonEdit:TextEditor
                                         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                                         Name="TextEditor"
@@ -139,21 +136,28 @@
                                         FontWeight="Light"
                                         SyntaxHighlighting="C#"
                                         FontSize="10pt"
+                                        TextChanged="TextEditor_OnTextChanged"
                                         HorizontalScrollBarVisibility="Disabled"
                                         VerticalScrollBarVisibility="Auto"
                                         Document="{Binding Text, Mode=TwoWay}"
                                         Loaded="TextEditor_OnLoaded">
-                                        <avalonEdit:TextEditor.Background>
-                                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                                <GradientStop Color="#2a0b38" Offset="0"/>
-                                                <GradientStop Color="#4a0e41" Offset="1"/>
-                                            </LinearGradientBrush>
+                                    <avalonEdit:TextEditor.Background>
+                                            Transparent
                                         </avalonEdit:TextEditor.Background>
                                     </avalonEdit:TextEditor>
-                                <ListBox Name="SuggestionsListBox"
-                                         VerticalAlignment="Top"
-                                         Margin="5"
-                                         Visibility="Collapsed"/>
+                                    <Grid Column="1">
+                                        <ListView Background="Transparent" ItemsSource="{Binding CompileErrorsList}" BorderThickness="0">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label Content="Line" Foreground="White"/>
+                                                        <Label Content="{Binding LineNumber}" Foreground="White"/>
+                                                        <Label Content="{Binding ErrorMessage}" Foreground="White"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </Grid>
                             </Grid>
                             <Grid Grid.Row="2" Background="#2e2d2d">
                                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -169,9 +173,7 @@
                             </Grid>
                             <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="4">
                                 <GridSplitter.Background>
-                                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                        <GradientStop Color="#2a0b38" Offset="0"/>
-                                    </LinearGradientBrush>
+                                    Transparent
                                 </GridSplitter.Background>
                             </GridSplitter>
                         </Grid>

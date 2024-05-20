@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
+using Batoot_Developer.ErrorDetector;
 using Batoot_Developer.HelperClasses;
 using Batoot_Developer.Messages;
 using Batoot_Developer.Models;
@@ -16,6 +17,7 @@ public partial class TextEditorViewModel: BaseViewModel
 {
     [ObservableProperty] private ObservableCollection<FileDirectoryModel>? _directories;
     [ObservableProperty] private ObservableCollection<FileDirectoryModel>? _openedFiles; 
+    [ObservableProperty] private ObservableCollection<ErrorInfo>? _compileErrorsList; 
     [ObservableProperty] private TextDocument? _text;
     private bool _newFileCreationWindowClosedIsOn;
     [ObservableProperty] private string? _errors;
@@ -24,13 +26,19 @@ public partial class TextEditorViewModel: BaseViewModel
     private NewFilesWindow? _newFilesWindow;
     
     
-    
     public TextEditorViewModel()
     {
         WeakReferenceMessenger.Default.Register<ProjectOpenMessage>(this, ProjectOpen);
+        WeakReferenceMessenger.Default.Register<TextChanged>(this, ShowErrors);
         WeakReferenceMessenger.Default.Register<CurrentFileMessage>(this, SetCurrentFile);
         WeakReferenceMessenger.Default.Register<NewFileCreationWindowClosedMessage>(this, (_, _) => _newFileCreationWindowClosedIsOn = false);
         WeakReferenceMessenger.Default.Register<FileMessage>(this, SaveFile);
+    }
+
+    private void ShowErrors(object recipient, TextChanged message)
+    {
+        SaveFile();
+        if (Text?.Text != null) CompileErrorsList = CodeAnalyzer.AnalyzeErrors(Text.Text);
     }
 
     private void SaveFile(object recipient, FileMessage message)
@@ -86,17 +94,9 @@ public partial class TextEditorViewModel: BaseViewModel
         Errors = errors;
     }
     
-    [RelayCommand]
     private void SaveFile()
     {
-        try
-        {
-            if (_currentFile?.Path != null) File.WriteAllText(_currentFile.Path, Text?.Text);
-        }
-        catch (NullReferenceException)
-        {
-            Errors = "Choose file to save!";
-        }
+        if (_currentFile?.Path != null) File.WriteAllText(_currentFile.Path, Text?.Text);
     }
     
     private void ProjectOpen(object recipient, ProjectOpenMessage message)
