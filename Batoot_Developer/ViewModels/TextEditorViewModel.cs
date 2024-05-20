@@ -18,9 +18,11 @@ public partial class TextEditorViewModel: BaseViewModel
     [ObservableProperty] private ObservableCollection<FileDirectoryModel>? _openedFiles; 
     [ObservableProperty] private TextDocument? _text;
     private bool _newFileCreationWindowClosedIsOn;
-    [ObservableProperty] private string? _errors = "Your errors will be here, please, don't be mistaken";
+    [ObservableProperty] private string? _errors;
+    [ObservableProperty] private string? _selectedWord;
     private CurrentFileMessage? _currentFile;
     private NewFilesWindow? _newFilesWindow;
+    
     
     
     public TextEditorViewModel()
@@ -30,7 +32,7 @@ public partial class TextEditorViewModel: BaseViewModel
         WeakReferenceMessenger.Default.Register<NewFileCreationWindowClosedMessage>(this, (_, _) => _newFileCreationWindowClosedIsOn = false);
         WeakReferenceMessenger.Default.Register<FileMessage>(this, SaveFile);
     }
-    
+
     private void SaveFile(object recipient, FileMessage message)
     {
         var path = $"{_currentFile?.Path?.Remove(_currentFile.Path.IndexOf(_currentFile.Path.Split("\\").Last(), StringComparison.Ordinal))}";
@@ -68,14 +70,20 @@ public partial class TextEditorViewModel: BaseViewModel
     private void Run()
     {
         SaveFile();
-        if (_currentFile?.Path != null) DotNetCompileHelper.Run(_currentFile.Path);
+        if (_currentFile?.Path == null) return;
+        string errors;
+        DotNetCompileHelper.Run(_currentFile.Path, out errors);
+        Errors = errors;
     }
     
     [RelayCommand]
     private void Build()
     {
         SaveFile();
-        if (_currentFile?.Path != null) DotNetCompileHelper.Build(_currentFile.Path);
+        if (_currentFile?.Path == null) return;
+        string errors;
+        DotNetCompileHelper.Build(_currentFile.Path, out errors);
+        Errors = errors;
     }
     
     [RelayCommand]

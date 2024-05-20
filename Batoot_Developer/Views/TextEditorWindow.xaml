@@ -129,9 +129,11 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="1">
-                                    <avalonEdit:TextEditor
+                                <avalonEdit:TextEditor
                                         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                                         Name="TextEditor"
+                                        ShowLineNumbers="True"
+                                        LineNumbersForeground="White"
                                         FontFamily="Oswald"
                                         Foreground="WhiteSmoke"
                                         FontWeight="Light"
@@ -148,16 +150,22 @@
                                             </LinearGradientBrush>
                                         </avalonEdit:TextEditor.Background>
                                     </avalonEdit:TextEditor>
+                                <ListBox Name="SuggestionsListBox"
+                                         VerticalAlignment="Top"
+                                         Margin="5"
+                                         Visibility="Collapsed"/>
                             </Grid>
                             <Grid Grid.Row="2" Background="#2e2d2d">
-                                <TextBlock Foreground="IndianRed" Text="{Binding Errors}">
-                                    <TextBlock.Background>
-                                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                            <GradientStop Color="#2a0b38" Offset="0"/>
-                                            <GradientStop Color="#4a0e41" Offset="0.5"/>
-                                        </LinearGradientBrush>
-                                    </TextBlock.Background>
-                                </TextBlock>
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                    <TextBlock Foreground="White" Text="{Binding Errors}">
+                                        <TextBlock.Background>
+                                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                                <GradientStop Color="#2a0b38" Offset="0"/>
+                                                <GradientStop Color="#4a0e41" Offset="0.5"/>
+                                            </LinearGradientBrush>
+                                        </TextBlock.Background>
+                                    </TextBlock>
+                                </ScrollViewer>
                             </Grid>
                             <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="4">
                                 <GridSplitter.Background>
