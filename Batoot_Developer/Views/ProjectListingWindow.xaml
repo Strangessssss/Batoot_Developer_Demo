@@ -66,6 +66,7 @@
                 <RowDefinition Height="0.07*"/>
                 <RowDefinition Height="0.15*"/>
                 <RowDefinition/>
+                <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.15*"/>
                 <RowDefinition Height="0.075*"/>
             </Grid.RowDefinitions>
@@ -139,28 +140,28 @@
                     </ListView>
                 </ScrollViewer>
             </Grid>
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="4">
                 <Grid>
-                    <Border Margin="6 4">
-                        <Button FontSize="10" BorderThickness="0" Foreground="LightGray" Command="{Binding CreateNewProjectCommand}">
-                            <Button.Background>
-                                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                    <GradientStop Color="#2a0b38" Offset="0"/>
-                                    <GradientStop Color="#871b53" Offset="0.5"/>
-                                    <GradientStop Color="#2a0b38" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Button.Background>
+                    <Border Margin="6 4" CornerRadius="10">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                <GradientStop Color="#2a0b38" Offset="0"/>
+                                <GradientStop Color="#871b53" Offset="0.5"/>
+                                <GradientStop Color="#2a0b38" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Button FontSize="10" BorderThickness="0" Background="Transparent" Foreground="LightGray" Command="{Binding CreateNewProjectCommand}">
                             Create new
                         </Button>
                     </Border>
                 </Grid>
             </Grid>
-                <StatusBar Grid.Row="4" Background="#2a0b38">
-                    <TextBlock Margin="15 0 0 0" Foreground="Gray" FontSize="10">
-                        Projects: 
-                    </TextBlock>
-                    <TextBlock Foreground="Gray" FontSize="10" Text="{Binding AllProjects.Count}"/>
-                </StatusBar>
+            <StatusBar Grid.Row="5" Background="#2a0b38">
+                <TextBlock Margin="15 0 0 0" Foreground="Gray" FontSize="10">
+                    Projects: 
+                </TextBlock>
+                <TextBlock Foreground="Gray" FontSize="10" Text="{Binding AllProjects.Count}"/>
+            </StatusBar>
         </Grid>
     </Border>
 </Window>
