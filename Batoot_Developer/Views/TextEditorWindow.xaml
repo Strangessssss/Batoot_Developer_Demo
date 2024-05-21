@@ -65,7 +65,7 @@
                             </Grid.RowDefinitions>
                             <Grid Background="Transparent">
                                 <Button Background="Transparent" BorderThickness="0" Margin="25  3" HorizontalAlignment="Left" Command="{Binding NewFileCommand}">
-                                    <Image Source="../Images/add-file.png"/>
+                                    <Image Width="20" Source="../Images/add-file.png"/>
                                 </Button>
                             </Grid>
                             <TreeView Grid.Row="1" Background="Transparent" BorderThickness="0" Margin="5 10 " ItemsSource="{Binding Directories}">
@@ -139,9 +139,10 @@
                                         Foreground="WhiteSmoke"
                                         FontWeight="Light"
                                         SyntaxHighlighting="C#"
+                                        WordWrap="True"
                                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource WindowSizeToFontSizeConverter}}"
                                         TextChanged="TextEditor_OnTextChanged"
-                                        HorizontalScrollBarVisibility="Disabled"
+                                        HorizontalScrollBarVisibility="Auto"
                                         VerticalScrollBarVisibility="Auto"
                                         Document="{Binding Text, Mode=TwoWay}"
                                         Loaded="TextEditor_OnLoaded">
