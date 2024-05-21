@@ -58,10 +58,11 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                 
-                        <Grid Grid.Column="0">
+                        <Grid Grid.Column="0" ShowGridLines="False">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="0.07*"/>
+                                <RowDefinition Height="0.14*"/>
                                 <RowDefinition/>
+                                <RowDefinition Height="0.6*"/>
                             </Grid.RowDefinitions>
                             <Grid Background="Transparent">
                                 <Button Background="Transparent" BorderThickness="0" Margin="25  3" HorizontalAlignment="Left" Command="{Binding NewFileCommand}">
@@ -91,6 +92,40 @@
                                     </HierarchicalDataTemplate>
                                 </TreeView.Resources>
                             </TreeView>
+                            <StackPanel Grid.Row="2">
+                                <StackPanel>
+                                    <Label FontWeight="Bold" FontSize="15" HorizontalAlignment="Center" Foreground="White">
+                                        Batoot! Snippets
+                                    </Label>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Margin=" 7 0" Foreground="White">Snippet</Label>
+                                        <Label Margin=" 9 0" Foreground="White">Name</Label>
+                                    </StackPanel>
+                                </StackPanel>
+                                    <StackPanel  Orientation="Horizontal">
+                                    
+                                    <ComboBox FontSize="10" SelectedItem="{Binding SelectedSnippet}" Height="20" Width="50" VerticalAlignment="Top" Foreground="Black" Margin="9 12">
+                                        <ComboBox.Items>
+                                            <ComboBoxItem Foreground="Black">
+                                                Class
+                                            </ComboBoxItem>
+                                            <ComboBoxItem Foreground="Black">
+                                                Method
+                                            </ComboBoxItem>
+                                            <ComboBoxItem Foreground="Black">
+                                                Interface
+                                            </ComboBoxItem>
+                                            <ComboBoxItem Foreground="Black">
+                                                Enum
+                                            </ComboBoxItem>
+                                        </ComboBox.Items>
+                                    </ComboBox>
+                                    <StackPanel>
+                                        <TextBox x:Name="SnippetNameTextBox" Text="{Binding SnippetTemplateName}" Height="20" Width="100" Margin="9 12"/>
+                                        <Button Foreground="Black" Command="{Binding NewSnippetCommand}" HorizontalAlignment="Right" Height="20" Width="50" BorderThickness="0" Margin="9 8">New</Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
                         </Grid>
                         <GridSplitter ResizeBehavior="CurrentAndNext" x:Name="FilesGridSplitter" Grid.Column="0" VerticalAlignment="Stretch" Width="4">
                             <GridSplitter.Background>

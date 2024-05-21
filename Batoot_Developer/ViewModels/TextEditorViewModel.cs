@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows.Controls;
 using Batoot_Developer.ErrorDetector;
 using Batoot_Developer.HelperClasses;
 using Batoot_Developer.Messages;
@@ -21,6 +22,8 @@ public partial class TextEditorViewModel: BaseViewModel
     [ObservableProperty] private TextDocument? _text;
     private bool _newFileCreationWindowClosedIsOn;
     [ObservableProperty] private string? _errors;
+    [ObservableProperty] private ComboBoxItem? _selectedSnippet;
+    [ObservableProperty] private string? _snippetTemplateName;
     [ObservableProperty] private string? _selectedWord;
     private CurrentFileMessage? _currentFile;
     private NewFilesWindow? _newFilesWindow;
@@ -62,6 +65,40 @@ public partial class TextEditorViewModel: BaseViewModel
         if (_currentFile?.Path == null) return;
         if (Text != null)
             Text.Text = File.ReadAllText(_currentFile.Path);
+    }
+
+    partial void OnSelectedSnippetChanged(ComboBoxItem? value)
+    {
+        SnippetTemplateName = "My" + value?.Content;
+    }
+
+    [RelayCommand]
+    private void NewSnippet()
+    {
+        if (string.IsNullOrWhiteSpace(SnippetTemplateName))
+        {
+            return;
+        }
+        switch (SelectedSnippet?.Content)
+        {
+            case "Class":
+                if (Text != null)
+                    Text.Text += $"\n\npublic class {SnippetTemplateName}" + "\n{\n\n}";
+                break;
+            case "Interface":
+                if (Text != null)
+                    Text.Text += $"\n\npublic interface {SnippetTemplateName}" + "\n{\n\n}";
+                break;
+            case "Enum":
+                if (Text != null)
+                    Text.Text += $"\n\npublic enum {SnippetTemplateName}" + "\n{\n\n}";
+                break;
+            case "Method":
+                if (Text != null)
+                    Text.Text += $"\n\npublic void {SnippetTemplateName}" + "\n{\n\n}";
+                break;
+        }
+        SnippetTemplateName = string.Empty;
     }
     
     [RelayCommand]
