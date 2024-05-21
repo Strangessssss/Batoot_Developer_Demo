@@ -5,12 +5,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModels="clr-namespace:Batoot_Developer.ViewModels"
         xmlns:models="clr-namespace:Batoot_Developer.Models"
+        xmlns:converters="clr-namespace:Batoot_Developer.Converters"
         Closed="TextEditorWindow_OnClosed"
         mc:Ignorable="d"
         Title="Batoot! Developer" WindowStyle="None" ResizeMode="CanResizeWithGrip" Height="450" Width="900" MinWidth="900" MinHeight="450" Background="Transparent" AllowsTransparency="True">
     <Window.DataContext>
         <viewModels:TextEditorViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <converters:WindowSizeToFontSizeConverter x:Key="WindowSizeToFontSizeConverter"/>
+    </Window.Resources>
     <Border BorderThickness="1" CornerRadius="20">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
@@ -135,7 +139,7 @@
                                         Foreground="WhiteSmoke"
                                         FontWeight="Light"
                                         SyntaxHighlighting="C#"
-                                        FontSize="10pt"
+                                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource WindowSizeToFontSizeConverter}}"
                                         TextChanged="TextEditor_OnTextChanged"
                                         HorizontalScrollBarVisibility="Disabled"
                                         VerticalScrollBarVisibility="Auto"
