@@ -37,7 +37,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock Background="Transparent" PreviewMouseLeftButtonDown="UIElement_OnPreviewMouseLeftButtonDown"></TextBlock>
+                            <TextBlock TextAlignment="Left" Background="Transparent" PreviewMouseLeftButtonDown="UIElement_OnPreviewMouseLeftButtonDown" FontWeight="Heavy" Foreground="White" Margin="30 3 0 0"> Batoot! Developer</TextBlock>
                         </Grid>
                         <Grid Grid.Column="1">
                             <Button Background="Transparent" Height="17" BorderThickness="0" Foreground="White" FontSize="20" Margin="0 3 0 3" Click="Fullscreen">

@@ -95,7 +95,7 @@ public partial class TextEditorViewModel: BaseViewModel
                 break;
             case "Method":
                 if (Text != null)
-                    Text.Text += $"\n\npublic void {SnippetTemplateName}" + "\n{\n\n}";
+                    Text.Text += $"\n\npublic void {SnippetTemplateName}()" + "\n{\n\n}";
                 break;
         }
         SnippetTemplateName = string.Empty;
