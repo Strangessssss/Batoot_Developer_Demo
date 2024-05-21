@@ -61,7 +61,7 @@
                             </Grid.RowDefinitions>
                             <Grid Background="Transparent">
                                 <Button Background="Transparent" BorderThickness="0" Margin="25  3" HorizontalAlignment="Left" Command="{Binding NewFileCommand}">
-                                    <Image Source="../Images/add-folder.png"/>
+                                    <Image Source="../Images/add-file.png"/>
                                 </Button>
                             </Grid>
                             <TreeView Grid.Row="1" Background="Transparent" BorderThickness="0" Margin="5 10 " ItemsSource="{Binding Directories}">
@@ -108,10 +108,10 @@
                                 </Grid.Background>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button Background="Transparent" BorderThickness="0" Command="{Binding BuildCommand}">
-                                        <Image Source="../Images/hammer.png" Margin="10 3 10 3"/>
+                                        <Image Width="20" Source="../Images/sledgehammer.png" Margin="10 3 10 3"/>
                                     </Button>
                                     <Button Background="Transparent" BorderThickness="0" Command="{Binding RunCommand}">
-                                        <Image Source="../Images/play-button.png" Margin="10 3 10 3"/>
+                                        <Image Width="20" Source="../Images/play.png" Margin="10 3 10 3"/>
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -150,6 +150,9 @@
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
+                                                        <Label>
+                                                            <Image Source="../Images/error-page.png" Width="17"/>
+                                                        </Label>
                                                         <Label Content="Line" Foreground="White"/>
                                                         <Label Content="{Binding LineNumber}" Foreground="White"/>
                                                         <Label Content="{Binding ErrorMessage}" Foreground="White"/>

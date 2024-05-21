@@ -45,13 +45,7 @@
       <Resource Include="Images\2024-05-09 21.39.27.jpg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <Resource Include="Images\add-folder.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
       <Resource Include="Images\cancel.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <Resource Include="Images\diskette.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Images\folder.png">
@@ -60,16 +54,31 @@
       <Resource Include="Images\google-docs.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <Resource Include="Images\hammer.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
       <Resource Include="Images\move.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <Resource Include="Images\play-button.png">
+      <Resource Include="Images\play.png" />
+      <Resource Include="Images\zoom.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <Resource Include="Images\zoom.png">
+      <None Remove="Images\floppy-disc.png" />
+      <Resource Include="Images\floppy-disc.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\add-file.png" />
+      <Resource Include="Images\add-file.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\play.png" />
+      <None Remove="Images\sledgehammer.png" />
+      <None Remove="Images\error-page.png" />
+      <Resource Include="Images\error-page.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Images\sledgehammer.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>
