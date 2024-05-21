@@ -17,12 +17,50 @@
     </Window.Resources>
     <Border BorderThickness="0" CornerRadius="10" BorderBrush="Aqua">
         <Border.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#b934f7" Offset="0"/>
-                <GradientStop Color="#871b53" Offset="0.5"/>
-                <GradientStop Color="#2a0b38" Offset="1"/>
-            </LinearGradientBrush>
-        </Border.Background>
+                <LinearGradientBrush x:Name="BorderBrush" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop x:Name="BorderStop1" Color="#b934f7" Offset="0"/>
+                    <GradientStop x:Name="BorderStop2" Color="#871b53" Offset="0.5"/>
+                    <GradientStop x:Name="BorderStop3" Color="#2a0b38" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <!-- Animation for borderStop1 -->
+                            <ColorAnimation Storyboard.TargetName="BorderStop1" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#b934f7" To="#871b53" Duration="0:0:2" BeginTime="0:0:0"/>
+                            <ColorAnimation Storyboard.TargetName="BorderStop1" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#871b53" To="#2a0b38" Duration="0:0:2" BeginTime="0:0:2"/>
+                            <ColorAnimation Storyboard.TargetName="BorderStop1" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#2a0b38" To="#b934f7" Duration="0:0:2" BeginTime="0:0:4"/>
+                            <!-- Animation for borderStop2 -->
+                            <ColorAnimation Storyboard.TargetName="BorderStop2" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#871b53" To="#2a0b38" Duration="0:0:2" BeginTime="0:0:0"/>
+                            <ColorAnimation Storyboard.TargetName="BorderStop2" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#2a0b38" To="#b934f7" Duration="0:0:2" BeginTime="0:0:2"/>
+                            <ColorAnimation Storyboard.TargetName="BorderStop2" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#b934f7" To="#871b53" Duration="0:0:2" BeginTime="0:0:4"/>
+                            <!-- Animation for borderStop3 -->
+                            <ColorAnimation Storyboard.TargetName="BorderStop3" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#2a0b38" To="#b934f7" Duration="0:0:2" BeginTime="0:0:0"/>
+                            <ColorAnimation Storyboard.TargetName="BorderStop3" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#b934f7" To="#871b53" Duration="0:0:2" BeginTime="0:0:2"/>
+                            <ColorAnimation Storyboard.TargetName="BorderStop3" 
+                                            Storyboard.TargetProperty="Color" 
+                                            From="#871b53" To="#2a0b38" Duration="0:0:2" BeginTime="0:0:4"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.07*"/>
